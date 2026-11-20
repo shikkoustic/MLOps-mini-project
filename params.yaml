@@ -1,0 +1,24 @@
+# Settings read by code with yaml.safe_load(open("params.yaml")).
+# Keep every path/setting here instead of hardcoding it in src/.
+
+data:
+  train_path: "data/raw/train.csv"
+  later_path: "data/raw/later.csv"
+  holdout_path: "data/raw/holdout_features.csv"
+  target_column: "pm25_next_day"
+
+model:
+  tracking_uri: "sqlite:///mlflow.db"
+  experiment_name: "mp128_air_quality"
+  registered_model_name: "mp128_pm25_model"
+  random_state: 42
+
+monitoring:
+  psi_bins: 10
+  retrain_split: 0.70   # first 70% of later.csv (sorted by date) used to retrain v2
+  promotion_mae_improvement: 0.08   # v2 must be at least 8% lower MAE than v1 to be promoted
+
+service:
+  port: 8000
+  max_pm25_today: 550
+  min_temp_c: 2.5

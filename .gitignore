@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+
+# DVC tracks the CSVs themselves; keep only the .dvc pointer files in git
+/data/raw/train.csv
+/data/raw/later.csv
+
+# MLflow artifact store (mlflow.db itself IS committed, per the handbook)
+mlruns/
+mlartifacts/
