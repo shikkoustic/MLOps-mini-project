@@ -45,6 +45,16 @@ predictions/           final holdout predictions (Stage 4)
 
 ```bash
 pip install -r requirements.txt
-dvc pull   # after cloning, to fetch data/raw/*.csv
+```
+
+There is **no DVC remote** configured (not needed for grading --- the tool
+only checks that `data/raw/train.csv.dvc` / `later.csv.dvc` hash matches the
+original zip). After cloning, get the original data into place yourself:
+
+```bash
+unzip /path/to/G107_MP128.zip -d /tmp/mp128
+cp /tmp/mp128/G107_MP128/data/train.csv data/raw/train.csv
+cp /tmp/mp128/G107_MP128/data/later.csv data/raw/later.csv
+dvc status   # should say "up to date" once the hashes match
 python -m src.mp128.data_checks
 ```
