@@ -1,3 +1,4 @@
+
 import pandas as pd
 
 
@@ -38,7 +39,10 @@ def clean_train(df: pd.DataFrame) -> pd.DataFrame:
         .str.lower()
         .str.strip()
         .str.rstrip(".")
+        .replace({
+            "fes": "festival",
+            "wee": "weekend"
+        })
     )
 
     return df
-
