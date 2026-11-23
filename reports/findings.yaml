@@ -1,51 +1,41 @@
-# MP128 findings --- fill in every value, keep every key.
-# The marking tool reads this file. Write null only where the comment says so.
-# Use the exact column names and group values from your data files.
-
-group_id: "G107"          # your group id, e.g. "G042"
-problem_id: "MP128"
-
+group_id: G107
+problem_id: MP128
 data_issues:
-  # For each of the 7 kinds: present: true or false.
-  # If present is false, leave the other values as null.
-  # Found by: src/mp128/data_checks.py (Stage 1 work)
   leaking_column:
     present: false
-    column: null           # the column that must not be used as a feature
+    column: null
   unit_mixup:
     present: true
-    column: "wind_kmph"    # the column recorded in a different unit
-    group_value: "Residential"  # the value of station_zone whose rows are affected
-    factor: 1000           # wrong value = right value x factor
+    column: wind_kmph
+    group_value: Residential
+    factor: 1000
   sentinel_value:
     present: true
-    column: "stubble_fires"
-    value: 9999            # the special number typed instead of a blank
-    count: 54              # how many rows have it
+    column: stubble_fires
+    value: 9999
+    count: 54
   duplicate_rows:
     present: false
-    count: null            # number of EXTRA copies (rows you would delete)
+    count: null
   stuck_sensor:
     present: false
     column: null
-    start_date: null       # first date with the stuck value, YYYY-MM-DD
-    end_date: null         # last date with the stuck value, YYYY-MM-DD
+    start_date: null
+    end_date: null
   target_typos:
     present: true
-    count: 9               # rows whose target was typed 10 times too big
+    count: 9
   spelling_variants:
     present: true
-    column: "day_type"
-    true_levels: 3         # how many real categories there are after cleaning
-
+    column: day_type
+    true_levels: 3
 tracking:
-  experiment_name: null
-  best_run_id: null        # the MLflow run id of your v1 model
-  registered_model_name: null
-  champion_version: null
-
+  experiment_name: mp128_air_quality
+  best_run_id: 38bebdd6c6864e63843534b04b5f1812
+  registered_model_name: mp128_pm25_model
+  champion_version: 1
 monitoring:
-  psi:                     # cleaned train.csv vs later.csv, 10 bins
+  psi:
     pm25_today: null
     wind_kmph: null
     humidity_pct: null
@@ -53,11 +43,11 @@ monitoring:
     traffic_index: null
     stubble_fires: null
   most_drifted_feature: null
-  mae_by_group:            # v1 on later.csv, per value of station_zone
-    'Central': null
-    'Residential': null
-    'Industrial': null
+  mae_by_group:
+    Central: null
+    Residential: null
+    Industrial: null
   worst_served_group: null
-  mae_v1_on_check: null    # v1 on the last 30% of later.csv (by date)
-  mae_v2_on_check: null    # v2 on the same rows
-  decision: null           # promote or keep
+  mae_v1_on_check: null
+  mae_v2_on_check: null
+  decision: null
