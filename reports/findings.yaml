@@ -33,21 +33,21 @@ tracking:
   experiment_name: mp128_air_quality
   best_run_id: 38bebdd6c6864e63843534b04b5f1812
   registered_model_name: mp128_pm25_model
-  champion_version: 1
+  champion_version: 2
 monitoring:
   psi:
-    pm25_today: null
-    wind_kmph: null
-    humidity_pct: null
-    temp_c: null
-    traffic_index: null
-    stubble_fires: null
-  most_drifted_feature: null
+    pm25_today: 4.5246
+    wind_kmph: 0.0588
+    humidity_pct: 0.0358
+    temp_c: 0.0681
+    traffic_index: 0.0399
+    stubble_fires: 0.1428
+  most_drifted_feature: pm25_today
   mae_by_group:
-    Central: null
-    Residential: null
-    Industrial: null
-  worst_served_group: null
-  mae_v1_on_check: null
-  mae_v2_on_check: null
-  decision: null
+    Central: 93.1601
+    Residential: 18.6230
+    Industrial: 17.5415
+  worst_served_group: Central
+  mae_v1_on_check: 40.4306
+  mae_v2_on_check: 24.5151
+  decision: promote
